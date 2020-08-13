@@ -2,7 +2,6 @@ package com.HiverTest;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -11,16 +10,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 public class HiverBasics {
 	
@@ -29,8 +24,8 @@ public class HiverBasics {
 	@BeforeSuite
 	public void browserSetup() {
 		System.setProperty("webdriver.chrome.driver", "C:\\chromeDriverFolder\\chromedriver_win32\\chromedriver.exe");
-	//	ChromeOptions options = new ChromeOptions();
-	//	options.addExtensions(new File("gmail.crx"));
+		ChromeOptions options = new ChromeOptions();
+		options.addExtensions(new File("gmail_hiver.crx"));
 		driver = new ChromeDriver();	
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -98,7 +93,7 @@ public class HiverBasics {
 	
 	}
 	
-	@AfterMethod
+	@AfterSuite
 	public void closeBrowser() {
 		driver.quit();
 	}
